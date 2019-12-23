@@ -2,9 +2,11 @@
   "name": "mybestproject",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "node index.js"
+    "build": "webpack -p",
+    "watch": "webpack --watch",
+    "start": "node ./src/app.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,14 @@
   "homepage": "https://github.com/NedStar72/MyBestProject#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10"
   }
 }
