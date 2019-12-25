@@ -1,11 +1,14 @@
 var path = require('path');
 
 module.exports = {
-    entry: './src/app.js',
+    context: path.resolve(__dirname, 'src'),
+    entry: './app/app.js',
+    devtool: 'source-map',
     target: 'node',
     output: {
+        path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        publicPath: '/' // public URL of the output directory when referenced in a browser
     },
     module: {
         rules: [
@@ -20,6 +23,5 @@ module.exports = {
                 }
             }
         ]
-    },
-    devtool: 'source-map'
+    }
 };
