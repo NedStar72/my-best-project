@@ -1,11 +1,14 @@
 {
     "version": "0.2.0",
     "configurations": [{
+        "name": "Launch Program",
         "type": "node",
         "request": "launch",
-        "name": "Запустить программу",
-        "sourceMaps": true,
-        "smartStep": true,
-        "program": "${workspaceFolder}\\dist\\bundle.js"
+        "cwd": "${workspaceRoot}",
+        "program": "${workspaceRoot}/src/app.js",
+        "outFiles": [
+            "${workspaceRoot}/dist/bundle.js"
+        ],
+        "sourceMaps": true
     }]
 }

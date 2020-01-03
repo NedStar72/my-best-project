@@ -1,9 +1,11 @@
 import express from 'express'
 import path from 'path'
+// const path = require('path');
+// const express = require('express');
 const app = express();
 const port = process.env.PORT || 8080;
 
-app.use(express.static(__dirname + "/src/public"));
+app.use(express.static(path.resolve('src/public')));
 
 app.get('/', (req, res) => res.sendFile(path.resolve('src/public/index.html')));
 
