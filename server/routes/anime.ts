@@ -4,7 +4,7 @@ import Anime from '../models/Anime';
 const router = express.Router();
 
 /* GET ALL */
-router.get('/', (req, res, next) => {
+router.get('/', (_req, res, next) => {
     Anime.find((err: any, products: any) => {
         if (err)
             return next(err);

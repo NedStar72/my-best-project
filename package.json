@@ -1,12 +1,11 @@
 {
   "name": "mybestproject",
   "version": "1.0.0",
-  "description": "",
   "private": true,
   "main": "dist/index.js",
   "scripts": {
-    "build": "next build",
-    "start": "node ./dist/index.js"
+    "build": "next build && tsc --project tsconfig.server.json",
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -34,6 +33,7 @@
     "@types/morgan": "^1.7.37",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
+    "ts-node": "^8.6.2",
     "typescript": "^3.7.4"
   }
 }

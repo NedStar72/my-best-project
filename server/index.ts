@@ -12,7 +12,11 @@ mongoose.connect('mongodb://localhost/shiki', { useNewUrlParser: true, useUnifie
     .then(() => console.log('Сonnection succesful!'))
     .catch((err) => console.error(err));
 
-const app = next({ dev: process.env.NODE_ENV !== 'production' });
+const dev = process.env.NODE_ENV !== 'production';
+const port = process.env.PORT || '3000';
+const app = next({ dev });
+const handle = app.getRequestHandler()
+
 app.prepare().then(() => {
     const server = express();
 
@@ -29,7 +33,12 @@ app.prepare().then(() => {
         return app.render(req, res, '/example', req.query)
     })
 
-    const port = process.env.PORT || '3000';
+    server.all('*', (req, res) => {
+        return handle(req, res)
+    })
 
-    server.listen(port, () => console.log(`http://localhost:${port}/`));
+    server.listen(port, (err) => {
+        if (err) throw err
+        console.log(`http://localhost:${port}/`)
+    });
 })
