@@ -26,7 +26,7 @@ app.prepare().then(() => {
 
     // Next.js
     server.get('/a', (req, res) => {
-        return app.render(req, res, './pages/example', req.query)
+        return app.render(req, res, '/example', req.query)
     })
 
     const port = process.env.PORT || '3000';
