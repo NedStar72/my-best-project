@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
 import express from 'express';
-import logger from 'morgan';
 import bodyParser from 'body-parser';
 import next from 'next';
 
-// Руты
+// Импорт рутов
 import anime from './routes/anime';
 
 // Подключение к БД
@@ -20,12 +19,11 @@ const handle = app.getRequestHandler()
 app.prepare().then(() => {
     const server = express();
 
-    server.use(logger('dev'));
     server.use(bodyParser.json());
     server.use(bodyParser.urlencoded({ extended: false }));
     //server.use(express.static(path.join(__dirname, 'build')));
 
-    // Api
+    // Подключение рутов (Api)
     server.use('/api/anime', anime);
 
     // Next.js
