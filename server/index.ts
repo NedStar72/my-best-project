@@ -27,10 +27,6 @@ app.prepare().then(() => {
     server.use('/api/anime', anime);
 
     // Next.js
-    server.get('/a', (req, res) => {
-        return app.render(req, res, '/example', req.query)
-    })
-
     server.all('*', (req, res) => {
         return handle(req, res)
     })
