@@ -7,14 +7,14 @@ import next from 'next';
 import anime from './routes/anime';
 
 // Подключение к БД
-mongoose.connect('mongodb://localhost/shiki', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/shiki', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(() => console.log('Сonnection succesful!'))
     .catch((err) => console.error(err));
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || '3000';
 const app = next({ dev });
-const handle = app.getRequestHandler()
+const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
     const server = express();
@@ -28,11 +28,11 @@ app.prepare().then(() => {
 
     // Next.js
     server.all('*', (req, res) => {
-        return handle(req, res)
+        return handle(req, res);
     })
 
     server.listen(port, (err) => {
-        if (err) throw err
-        console.log(`http://localhost:${port}/`)
+        if (err) throw err;
+        console.log(`http://localhost:${port}/`);
     });
 })

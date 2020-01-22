@@ -6,14 +6,13 @@ interface MenuProps {
     links: string[]
 }
 
-export default class Menu extends Component<MenuProps> {
+export default class extends Component<MenuProps> {
     render() {
         return <>
-            {this.props.links.map((link, i) => <div key={i}>
-                <Link href={link}>
-                    <a>{link}</a>
-                </Link>
-            </div>)}
+            {this.props.links.map((link, i) =>
+                <div key={i}>
+                    <Link href={link}><a>{link}</a></Link>
+                </div>)}
         </>
     }
 }
