@@ -31,6 +31,7 @@ router.post('/', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
     Anime.findByIdAndUpdate(req.params.id, req.body, (err: any, post: any) => {
         if (err) return next(err);
+        
         res.json(post);
     });
 });

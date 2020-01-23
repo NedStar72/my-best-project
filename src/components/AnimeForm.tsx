@@ -32,7 +32,7 @@ export default class extends Component<{ id?: string }, IAnime> {
 
         const { title, description } = this.state;
 
-        if (this.props.id === null)
+        if (this.props.id === undefined)
             axios.post('/api/anime', { title, description })
                 .then((res) => Router.replace(`/anime/${res.data._id}`))
                 .catch(reason => console.log(reason));
