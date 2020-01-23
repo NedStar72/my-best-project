@@ -2,6 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import { IAnime } from '../../../server/models/Anime'
 import Link from 'next/link'
+import '../../style/index.scss'
+import Bootstrap from '../../components/Bootstrap'
+import Head from '../../components/Head'
 
 export default class AnimeMainPage extends React.Component<{}, { animes: IAnime[] }> {
     state = {
@@ -16,15 +19,16 @@ export default class AnimeMainPage extends React.Component<{}, { animes: IAnime[
     }
 
     render = () => {
-        return <div className='container'>
-            <div>
-                <Link href='/'><a>/</a></Link>
+        return <>
+            <Bootstrap />
+            <Head />
+            <div className='container'>
+                {this.state.animes.map((a, i) =>
+                    <div key={i}>
+                        <Link href={`/anime/${a._id}`}><a>{a.title}</a></Link>
+                    </div>
+                )}
             </div>
-            {this.state.animes.map((a, i) =>
-                <div key={i}>
-                    <Link href={`/anime/${a._id}`}><a>{a.title}</a></Link>
-                </div>
-            )}
-        </div>
+        </>
     }
 }

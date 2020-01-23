@@ -1,6 +1,9 @@
 const withSass = require('@zeit/next-sass')
 module.exports = withSass({
-    sassLoaderOptions: {
-      includePaths: ["./src/style/**/*"]
-    }
-  })
+  devIndicators: {
+    autoPrerender: false,
+  },
+  sassLoaderOptions: {
+    includePaths: ["./src/style/**/*"]
+  }
+})

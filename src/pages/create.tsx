@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import Link from 'next/link';
 import AnimeForm from '../components/AnimeForm'
+import Bootstrap from '../components/Bootstrap'
+import Head from '../components/Head'
 import '../style/index.scss'
 
 export default class Create extends Component<{}> {
     render() {
-        return (
+        return <>
+            <Bootstrap />
+            <Head />
             <div className='container'>
                 <h3>Добавить аниме</h3>
-                <div>
-                    <h4><Link href='/'><a>/</a></Link></h4>
-                    <AnimeForm />
-                </div>
+                <AnimeForm />
             </div>
-        );
+        </>
     }
 }

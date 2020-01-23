@@ -47,15 +47,15 @@ export default class extends Component<{ id?: string }, IAnime> {
         const { title, description } = this.state;
         return (
             <form onSubmit={this.onSubmit}>
-                <div>
-                    <label htmlFor='title' className='block'>Название:</label>
-                    <input type='text' name='title' defaultValue={title} placeholder='Название' onChange={this.onTitleChange} />
+                <div className='mb-4'>
+                    <label htmlFor='title' className='block'>Название</label>
+                    <input className='form-control' type='text' name='title' defaultValue={title} placeholder='Название' onChange={this.onTitleChange} />
                 </div>
-                <div>
-                    <label htmlFor='description' className='block'>Описание:</label>
-                    <textarea name='description' placeholder='Описание' cols={80} rows={3} defaultValue={description} onChange={this.onDescriptionChange} />
+                <div className='mb-4'>
+                    <label htmlFor='description' className='block'>Описание</label>
+                    <textarea className='form-control' name='description' placeholder='Описание' cols={80} rows={3} defaultValue={description} onChange={this.onDescriptionChange} />
                 </div>
-                <button type='submit'>Submit</button>
+                <button className='btn btn-primary' type='submit'>Submit</button>
             </form>
         );
     }

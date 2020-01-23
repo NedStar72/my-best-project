@@ -1,9 +1,11 @@
-import Menu from '../components/Menu'
+import Bootstrap from '../components/Bootstrap'
 import '../style/index.scss'
+import Head from '../components/Head'
 
-export default () => <div className='/container'>
-  <Menu links={[
-    '/create',
-    '/anime'
-  ]} />
-</div>
+export default () => <>
+  <Bootstrap />
+  <Head />
+  <div className='container'>
+    <div>123</div>
+  </div>
+</>
