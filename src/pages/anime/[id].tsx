@@ -7,8 +7,8 @@ import Bootstrap from '../../components/Bootstrap'
 import Head from '../../components/Head'
 import '../../style/index.scss'
 
-class AnimePage extends React.Component<{ id: string }, IAnime>{
-    state = {
+export default class AnimePage extends React.Component<{ id: string }, IAnime>{
+    state : Readonly<IAnime> = {
         _id: "",
         title: "",
         description: ""
@@ -19,7 +19,7 @@ class AnimePage extends React.Component<{ id: string }, IAnime>{
     }
 
     componentDidMount = () => {
-        axios.get(`/api/anime/${this.props.id}`)
+        axios.get<IAnime>(`/api/anime/${this.props.id}`)
             .then(res => {
                 this.setState(res.data);
             })
@@ -28,7 +28,7 @@ class AnimePage extends React.Component<{ id: string }, IAnime>{
 
     delete = () => {
         if (confirm("Вы действительно хотите удалить тайтл?"))
-            axios.delete(`/api/anime/${this.props.id}`)
+            axios.delete<IAnime>(`/api/anime/${this.props.id}`)
                 .then(() => Router.replace('/anime'))
                 .catch((reason) => console.log(reason));
     }
@@ -48,11 +48,9 @@ class AnimePage extends React.Component<{ id: string }, IAnime>{
                     </div>
                 </div>
                 <div>
-                    {this.state.description.split('\n').map(i => <p>{i}</p>)}
+                    {this.state.description.split('\n').map((text, i) => <p key={i}>{text}</p>)}
                 </div>
             </div>
         </>
     }
 }
-
-export default AnimePage;

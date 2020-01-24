@@ -6,13 +6,15 @@ import '../../style/index.scss'
 import Bootstrap from '../../components/Bootstrap'
 import Head from '../../components/Head'
 
-export default class AnimeMainPage extends React.Component<{}, { animes: IAnime[] }> {
-    state = {
-        animes: [] as IAnime[]
+interface IAnimeList { animes: IAnime[] }
+
+export default class AnimeMainPage extends React.Component<{}, IAnimeList> {
+    state: IAnimeList = {
+        animes: []
     }
 
     componentDidMount = () => {
-        axios.get('/api/anime')
+        axios.get<IAnime[]>('/api/anime')
             .then((res) => {
                 this.setState({ animes: res.data })
             })

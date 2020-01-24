@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
-const AnimeSchema = new mongoose.Schema({
+const AnimeSchema = new Schema({
   title: String,
   description: String,
   updated_date:
@@ -11,9 +11,11 @@ const AnimeSchema = new mongoose.Schema({
 });
 
 export interface IAnime {
-  _id: String,
-  title: String,
-  description: String
+  _id: string,
+  title: string,
+  description: string
 }
 
-export default mongoose.model('Anime', AnimeSchema);
+export type IAnimeDoc = IAnime & Document
+
+export default AnimeSchema

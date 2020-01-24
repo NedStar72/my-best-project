@@ -1,0 +1,9 @@
+{
+    "name": "shiki",
+    "host": "localhost",
+    "opts": {
+        "useNewUrlParser": true,
+        "useUnifiedTopology": true,
+        "useFindAndModify": false
+    }
+}

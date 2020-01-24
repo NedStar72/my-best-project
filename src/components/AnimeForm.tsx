@@ -5,7 +5,7 @@ import '../style/index.scss'
 import { IAnime } from '../../server/models/Anime'
 
 export default class extends Component<{ id?: string }, IAnime> {
-    state = {
+    state : Readonly<IAnime> = {
         _id: '',
         title: '',
         description: ''
@@ -20,11 +20,11 @@ export default class extends Component<{ id?: string }, IAnime> {
     }
 
     onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.state.title = e.target.value;
+        this.setState({ title: e.target.value });
     }
 
     onDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        this.state.description = e.target.value;
+        this.setState({ description: e.target.value });
     }
 
     onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,11 +33,11 @@ export default class extends Component<{ id?: string }, IAnime> {
         const { title, description } = this.state;
 
         if (this.props.id === undefined)
-            axios.post('/api/anime', { title, description })
+            axios.post<IAnime>('/api/anime', { title, description })
                 .then((res) => Router.replace(`/anime/${res.data._id}`))
                 .catch(reason => console.log(reason));
         else
-            axios.put(`/api/anime/${this.props.id}`, { title, description })
+            axios.put<IAnime>(`/api/anime/${this.props.id}`, { title, description })
                 .then((res) => Router.replace(`/anime/${res.data._id}`))
                 .catch(reason => console.log(reason));
 

@@ -1,15 +1,13 @@
-import mongoose from 'mongoose';
 import express from 'express';
 import bodyParser from 'body-parser';
 import next from 'next';
 
-// Импорт рутов
-import anime from './routes/anime';
+// Connection to the database
+import db from './db';
+db.then(() => console.log('Сonnection succesful!')).catch((err) => console.error(err));
 
-// Подключение к БД
-mongoose.connect('mongodb://localhost/shiki', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
-    .then(() => console.log('Сonnection succesful!'))
-    .catch((err) => console.error(err));
+// Require routes
+import api from './routes';
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || '3000';
@@ -23,8 +21,8 @@ app.prepare().then(() => {
     server.use(bodyParser.urlencoded({ extended: false }));
     //server.use(express.static(path.join(__dirname, 'build')));
 
-    // Подключение рутов (Api)
-    server.use('/api/anime', anime);
+    // Use routes
+    server.use('/api', api);
 
     // Next.js
     server.all('*', (req, res) => {

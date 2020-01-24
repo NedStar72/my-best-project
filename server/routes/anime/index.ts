@@ -1,11 +1,14 @@
 import express from 'express';
-import Anime from '../models/Anime';
+import mogoose from 'mongoose';
+import { IAnimeDoc } from '../../models/Anime';
+
+const Anime = mogoose.model('Anime');
 
 const router = express.Router();
 
 /* GET ALL */
 router.get('/', (_req, res, next) => {
-    Anime.find((err: any, products: any) => {
+    Anime.find((err: any, products: IAnimeDoc[]) => {
         if (err) return next(err);
         res.json(products);
     });
@@ -13,7 +16,7 @@ router.get('/', (_req, res, next) => {
 
 /* GET BY ID */
 router.get('/:id', (req, res, next) => {
-    Anime.findById(req.params.id, (err: any, post: any) => {
+    Anime.findById(req.params.id, (err: any, post: IAnimeDoc) => {
         if (err) return next(err);
         res.json(post);
     });
@@ -21,7 +24,7 @@ router.get('/:id', (req, res, next) => {
 
 /* SAVE */
 router.post('/', (req, res, next) => {
-    Anime.create(req.body, (err: any, post: any) => {
+    Anime.create(req.body, (err: any, post: IAnimeDoc) => {
         if (err) return next(err);
         res.json(post);
     });
@@ -31,7 +34,6 @@ router.post('/', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
     Anime.findByIdAndUpdate(req.params.id, req.body, (err: any, post: any) => {
         if (err) return next(err);
-        
         res.json(post);
     });
 });
